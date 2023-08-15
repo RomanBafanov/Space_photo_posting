@@ -7,7 +7,7 @@ import argparse
 URL = 'https://api.nasa.gov'
 
 
-def space_images(api_key, count):
+def get_space_images(api_key, count):
     params = {
         'api_key': api_key,
         'count': count,
@@ -42,7 +42,7 @@ def main():
     load_dotenv()
     api_key = os.getenv('API_KEY_NASA')
 
-    space_images(api_key, args)
+    get_space_images(api_key, args)
 
 
 if __name__ == '__main__':

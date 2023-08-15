@@ -15,7 +15,7 @@ token = os.getenv('BOT_TOKEN')
 bot = telebot.TeleBot(token, state_storage=state_storage)
 
 
-def publication_of_photos(args):
+def get_public_of_photos(args):
     abs_path = os.path.abspath('images')
     images = os.listdir(abs_path)
     random.shuffle(images)
@@ -38,7 +38,7 @@ def main():
     args = parser.parse_args()
     if args == 'X':
         args = 14400
-    publication_of_photos(args)
+    get_public_of_photos(args)
 
 
 if __name__ == '__main__':
