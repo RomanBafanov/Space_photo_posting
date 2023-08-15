@@ -8,12 +8,12 @@ def fetch_spacex_last_launch(space_id):
     response = requests.get(url)
     response.raise_for_status()
 
-    link_list = response.json()['links']['flickr']['original']
+    links = response.json()['links']['flickr']['original']
     idx = 1
-    for foto_link in link_list:
+    for foto in links:
         filename = f'images/spaceX{idx}.jpg'
         idx += 1
-        save_photo(foto_link, filename)
+        save_photo(foto, filename)
 
 
 def main():
