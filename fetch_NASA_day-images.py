@@ -26,8 +26,8 @@ def get_space_images(api_key, count):
 
 
 def get_extension(link):
-    y = os.path.splitext(link['url'])
-    extension = y[1]
+    file_extension = os.path.splitext(link['url'])
+    extension = file_extension[1]
 
     return extension
 
