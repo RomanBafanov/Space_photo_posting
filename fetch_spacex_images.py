@@ -19,7 +19,7 @@ def fetch_spacex_last_launch(space_id):
 def main():
     parser = argparse.ArgumentParser(
         description='Программа даёт возможность скачать фотографии сделанные c запусков NASA: '
-                    'python fetch_spasex_images.py id-запуска'
+                    'python fetch_spacex_images.py id-запуска'
                     'Если вы укажите id-запуска none, то программа скачает фотографии с последнего запуска'
     )
     parser.add_argument('space_id', help='id-запуска')
