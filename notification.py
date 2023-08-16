@@ -7,15 +7,7 @@ import time
 import os
 
 
-state_storage = StateMemoryStorage()
-
-load_dotenv()
-token = os.getenv('BOT_TOKEN')
-
-bot = telebot.TeleBot(token, state_storage=state_storage)
-
-
-def get_public_of_photos(args):
+def get_public_of_photos(args, bot):
     abs_path = os.path.abspath('images')
     images = os.listdir(abs_path)
     random.shuffle(images)
@@ -38,7 +30,14 @@ def main():
     args = parser.parse_args()
     if args == 'X':
         args = 14400
-    get_public_of_photos(args)
+
+    state_storage = StateMemoryStorage()
+    load_dotenv()
+    token = os.getenv('BOT_TOKEN')
+
+    bot = telebot.TeleBot(token, state_storage=state_storage)
+
+    get_public_of_photos(args, bot)
 
 
 if __name__ == '__main__':
