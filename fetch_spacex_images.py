@@ -21,11 +21,9 @@ def main():
                     'python fetch_spacex_images.py id-запуска'
                     'Если вы укажите id-запуска none, то программа скачает фотографии с последнего запуска'
     )
-    parser.add_argument('space_id', help='id-запуска')
+    parser.add_argument('space_id', nargs='?', default='5eb87d47ffd86e000604b38a', help='id-запуска')
     args = parser.parse_args()
     space_id = args.space_id
-    if space_id == 'none':
-        space_id = '5eb87d47ffd86e000604b38a'
     fetch_spacex_last_launch(space_id)
 
 
