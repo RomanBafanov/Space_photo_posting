@@ -27,12 +27,12 @@ def get_image_date(api_key):
     response = requests.get(url, params=params)
     response.raise_for_status()
     json_data = response.json()
-    idx = 1
+
     for count in range(5):
         date = json_data[count]['date'].split()[0].split('-')
         image = json_data[count]['image']
 
-        get_earth_images(date, image, idx, api_key)
+        get_earth_images(date, image, count, api_key)
 
 
 def main():

@@ -9,10 +9,9 @@ def fetch_spacex_last_launch(space_id):
     response.raise_for_status()
 
     links = response.json()['links']['flickr']['original']
-    idx = 1
-    for foto in links:
-        filename = f'images/spaceX{idx}.jpg'
-        idx += 1
+
+    for count, foto in enumerate(links):
+        filename = f'images/spaceX{count}.jpg'
         save_photo(foto, filename)
 
 
