@@ -7,7 +7,7 @@ import argparse
 URL = 'https://api.nasa.gov/EPIC/archive/natural'
 
 
-def get_earth_images(date, image,idx, api_key):
+def get_earth_images(date, image, idx, api_key):
     url = f'{URL}/{date[0]}/{date[1]}/{date[2]}/png/{image}.png'
     params = {
         'api_key': api_key,
@@ -16,10 +16,11 @@ def get_earth_images(date, image,idx, api_key):
     response.raise_for_status()
 
     filename = f'images/Earth{idx}.png'
-    save_photo(response.url, filename)
+
+    return response.url, filename
 
 
-def get_image_date(api_key):
+def get_image_date(api_key, count):
     url = URL
     params = {
         'api_key': api_key,
@@ -28,11 +29,11 @@ def get_image_date(api_key):
     response.raise_for_status()
     json_data = response.json()
 
-    for count in range(5):
-        date = json_data[count]['date'].split()[0].split('-')
-        image = json_data[count]['image']
 
-        get_earth_images(date, image, count, api_key)
+    date = json_data[count]['date'].split()[0].split('-')
+    image = json_data[count]['image']
+
+    return date, image, api_key
 
 
 def main():
@@ -44,7 +45,12 @@ def main():
 
     load_dotenv()
     api_key = os.getenv('API_KEY_NASA')
-    get_image_date(api_key)
+    for count in range(5):
+        date, image, api_key = get_image_date(api_key, count)
+
+        url, filename = get_earth_images(date, image, count, api_key)
+
+        save_photo(url, filename)
 
 
 if __name__ == '__main__':
