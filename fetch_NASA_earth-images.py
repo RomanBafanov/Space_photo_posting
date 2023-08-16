@@ -7,7 +7,7 @@ import argparse
 URL = 'https://api.nasa.gov/EPIC/archive/natural'
 
 
-def get_earth_images(date, image, api_key):
+def get_earth_images(date, image,idx, api_key):
     url = f'{URL}/{date[0]}/{date[1]}/{date[2]}/png/{image}.png'
     params = {
         'api_key': api_key,
@@ -15,7 +15,7 @@ def get_earth_images(date, image, api_key):
     response = requests.get(url, params=params)
     response.raise_for_status()
 
-    filename = 'images/Earth.png'
+    filename = f'images/Earth{idx}.png'
     save_photo(response.url, filename)
 
 
@@ -26,11 +26,13 @@ def get_image_date(api_key):
     }
     response = requests.get(url, params=params)
     response.raise_for_status()
+    json_data = response.json()
+    idx = 1
+    for count in range(5):
+        date = json_data[count]['date'].split()[0].split('-')
+        image = json_data[count]['image']
 
-    date = response.json()[0]['date'].split()[0].split('-')
-    image = response.json()[0]['image']
-
-    get_earth_images(date, image, api_key)
+        get_earth_images(date, image, idx, api_key)
 
 
 def main():
