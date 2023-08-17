@@ -38,10 +38,11 @@ def main():
     )
     parser.add_argument('count', help='Количество фотографий')
     args = parser.parse_args()
+    count = args.count
     load_dotenv()
     api_key = os.getenv('API_KEY_NASA')
 
-    get_space_images(api_key, args)
+    get_space_images(api_key, count)
 
 
 if __name__ == '__main__':
