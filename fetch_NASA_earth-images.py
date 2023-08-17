@@ -41,7 +41,7 @@ def main():
         description='Программа даёт возможность скачать фотографии Земли сделанные NASA: '
                     'python fetch_NASA_earth-images.py'
     )
-    args = parser.parse_args()
+    parser.parse_args()
 
     load_dotenv()
     api_key = os.getenv('API_KEY_NASA')
