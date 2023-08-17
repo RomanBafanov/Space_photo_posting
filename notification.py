@@ -13,7 +13,8 @@ def get_public_of_photos(args, bot, chat_id):
     random.shuffle(images)
     for image in images:
         abs_path = os.path.abspath(f'images/{image}')
-        bot.send_photo(chat_id=chat_id, photo=open(abs_path, 'rb'))
+        with open(abs_path, 'rb') as photo:
+            bot.send_photo(chat_id=chat_id, photo=photo)
         time.sleep(args)
 
     bot.infinity_polling(skip_pending=True)
