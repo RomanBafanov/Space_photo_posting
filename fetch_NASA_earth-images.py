@@ -27,11 +27,11 @@ def get_image_date(api_key, count):
     }
     response = requests.get(url, params=params)
     response.raise_for_status()
-    json_data = response.json()
+    data = response.json()
 
 
-    date = json_data[count]['date'].split()[0].split('-')
-    image = json_data[count]['image']
+    date = data[count]['date'].split()[0].split('-')
+    image = data[count]['image']
 
     return date, image, api_key
 
