@@ -7,17 +7,13 @@ import argparse
 URL = 'https://api.nasa.gov/EPIC/archive/natural'
 NUMBER_OF_PHOTOS = 5
 
+
 def get_earth_images(date, image, idx, api_key):
-    url = f'{URL}/{date[0]}/{date[1]}/{date[2]}/png/{image}.png'
-    params = {
-        'api_key': api_key,
-    }
-    response = requests.get(url, params=params)
-    response.raise_for_status()
+    url = f'{URL}/{date[0]}/{date[1]}/{date[2]}/png/{image}.png?api_key={api_key}'
 
     filename = f'images/Earth{idx}.png'
 
-    return response.url, filename
+    return url, filename
 
 
 def get_image_date(api_key, count):
