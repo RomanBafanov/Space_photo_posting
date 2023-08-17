@@ -7,7 +7,7 @@ import time
 import os
 
 
-def get_public_of_photos(args, bot, chat_id):
+def get_public_of_photos(second, bot, chat_id):
     abs_path = os.path.abspath('images')
     images = os.listdir(abs_path)
     random.shuffle(images)
@@ -15,7 +15,7 @@ def get_public_of_photos(args, bot, chat_id):
         abs_path = os.path.abspath(f'images/{image}')
         with open(abs_path, 'rb') as photo:
             bot.send_photo(chat_id=chat_id, photo=photo)
-        time.sleep(args)
+        time.sleep(second)
 
     bot.infinity_polling(skip_pending=True)
 
@@ -29,6 +29,7 @@ def main():
     )
     parser.add_argument('second', nargs='?', default=14400, help='количество секунд')
     args = parser.parse_args()
+    second = int(args.second)
 
     state_storage = StateMemoryStorage()
     load_dotenv()
@@ -37,7 +38,7 @@ def main():
 
     bot = telebot.TeleBot(token, state_storage=state_storage)
 
-    get_public_of_photos(args, bot, chat_id)
+    get_public_of_photos(second, bot, chat_id)
 
 
 if __name__ == '__main__':
