@@ -16,8 +16,8 @@ def get_space_images(api_key, count):
     response = requests.get(url, params=params)
     response.raise_for_status()
 
-    for count, photos in enumerate(response.json()):
-        photo = photos['url']
+    for count, photo_data in enumerate(response.json()):
+        photo = photo_data['url']
         extension = get_extension(photo)
         if extension:
             filename = f'images/NASA_day-foto{count}{extension}'
