@@ -26,13 +26,16 @@ def get_image_date(api_key, count):
 def main():
     load_dotenv()
     api_key = os.getenv('API_KEY_NASA')
+    params = {
+        'api_key': api_key,
+    }
     for count in range(NUMBER_OF_PHOTOS):
         date, image = get_image_date(api_key, count)
 
-        url = f'{URL}/{date[0]}/{date[1]}/{date[2]}/png/{image}.png?api_key={api_key}'
+        url = f'{URL}/{date[0]}/{date[1]}/{date[2]}/png/{image}.png'
         filename = f'images/Earth{count}.png'
 
-        save_photo(url, filename)
+        save_photo_whith_params(url, params, filename)
 
 
 if __name__ == '__main__':
