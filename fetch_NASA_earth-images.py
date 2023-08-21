@@ -33,12 +33,6 @@ def get_image_date(api_key, count):
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description='Программа даёт возможность скачать фотографии Земли сделанные NASA: '
-                    'python fetch_NASA_earth-images.py'
-    )
-    parser.parse_args()
-
     load_dotenv()
     api_key = os.getenv('API_KEY_NASA')
     for count in range(NUMBER_OF_PHOTOS):
