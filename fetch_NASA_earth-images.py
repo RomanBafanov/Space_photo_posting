@@ -20,14 +20,14 @@ def get_image_date(api_key, count):
     date = photo_details[count]['date'].split()[0].split('-')
     image = photo_details[count]['image']
 
-    return date, image, api_key
+    return date, image
 
 
 def main():
     load_dotenv()
     api_key = os.getenv('API_KEY_NASA')
     for count in range(NUMBER_OF_PHOTOS):
-        date, image, api_key = get_image_date(api_key, count)
+        date, image = get_image_date(api_key, count)
 
         url = f'{URL}/{date[0]}/{date[1]}/{date[2]}/png/{image}.png?api_key={api_key}'
         filename = f'images/Earth{count}.png'
