@@ -1,19 +1,10 @@
 from dotenv import load_dotenv
 from save_foto import *
 import requests
-import argparse
 
 
 URL = 'https://api.nasa.gov/EPIC/archive/natural'
 NUMBER_OF_PHOTOS = 5
-
-
-def get_earth_images(date, image, idx, api_key):
-    url = f'{URL}/{date[0]}/{date[1]}/{date[2]}/png/{image}.png?api_key={api_key}'
-
-    filename = f'images/Earth{idx}.png'
-
-    return url, filename
 
 
 def get_image_date(api_key, count):
@@ -38,7 +29,8 @@ def main():
     for count in range(NUMBER_OF_PHOTOS):
         date, image, api_key = get_image_date(api_key, count)
 
-        url, filename = get_earth_images(date, image, count, api_key)
+        url = f'{URL}/{date[0]}/{date[1]}/{date[2]}/png/{image}.png?api_key={api_key}'
+        filename = f'images/Earth{count}.png'
 
         save_photo(url, filename)
 
