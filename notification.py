@@ -27,9 +27,9 @@ def main():
                     'python notification.py количество секунд'
                     'Если вы укажите количество секунд X, то программа опубликует фотографии каждые 4 часа'
     )
-    parser.add_argument('second', nargs='?', default=14400, help='количество секунд')
+    parser.add_argument('second', type=int, nargs='?', default=14400, help='количество секунд')
     args = parser.parse_args()
-    second = int(args.second)
+    second = args.second
 
     state_storage = StateMemoryStorage()
     load_dotenv()
