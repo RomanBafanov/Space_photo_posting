@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-from save_foto import save_photo_whith_params
+from save_foto import save_photo
 import requests
 import os
 
@@ -35,7 +35,7 @@ def main():
         url = f'{URL}/{date[0]}/{date[1]}/{date[2]}/png/{image}.png'
         filename = f'images/Earth{count}.png'
 
-        save_photo_whith_params(url, params, filename)
+        save_photo(url, filename, params)
 
 
 if __name__ == '__main__':
