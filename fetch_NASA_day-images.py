@@ -1,7 +1,8 @@
 from dotenv import load_dotenv
-from save_foto import *
+from save_foto import save_photo
 import requests
 import argparse
+import os
 
 
 URL = 'https://api.nasa.gov'

@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
-from save_foto import *
+from save_foto import save_photo_whith_params
 import requests
-
+import os
 
 URL = 'https://api.nasa.gov/EPIC/archive/natural'
 NUMBER_OF_PHOTOS = 5

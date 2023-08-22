@@ -1,4 +1,4 @@
-from save_foto import *
+from save_foto import save_photo
 import requests
 import argparse
 
